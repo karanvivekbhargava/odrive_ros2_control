@@ -44,8 +44,9 @@ def generate_launch_description():
 
     rviz_config_file = PathJoinSubstitution(
         [
-            FindPackageShare("diffbot_description"),
-            "config",
+            FindPackageShare("ros2_control_demo_description"),
+            "diffbot",
+            "rviz",
             "diffbot.rviz"
         ]
     )

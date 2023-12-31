@@ -225,7 +225,7 @@ return_type ODriveHardwareInterface::perform_command_mode_switch(
           serial_numbers_[1][i],
           AXIS__CONTROLLER__CONFIG__CONTROL_MODE + per_axis_offset * axes_[i],
           (int32_t)control_level_[i]));
-        input_vel = hw_commands_velocities_[i] / 2 / M_PI;
+        input_vel = (i == 0? -1.0 : 1.0) * (hw_commands_velocities_[i] / 2 / M_PI);
         CHECK_RW(odrive->write(
           serial_numbers_[1][i], AXIS__CONTROLLER__INPUT_VEL + per_axis_offset * axes_[i],
           input_vel));
@@ -251,7 +251,7 @@ return_type ODriveHardwareInterface::perform_command_mode_switch(
         CHECK_RW(odrive->write(
           serial_numbers_[1][i], AXIS__CONTROLLER__INPUT_POS + per_axis_offset * axes_[i],
           input_pos));
-        input_vel = hw_commands_velocities_[i] / 2 / M_PI;
+        input_vel = (i == 0? -1.0 : 1.0) * (hw_commands_velocities_[i] / 2 / M_PI);
         CHECK_RW(odrive->write(
           serial_numbers_[1][i], AXIS__CONTROLLER__INPUT_VEL + per_axis_offset * axes_[i],
           input_vel));
@@ -345,7 +345,7 @@ return_type ODriveHardwareInterface::write(const rclcpp::Time &, const rclcpp::D
           input_pos));
 
       case integration_level_t::VELOCITY:
-        input_vel = hw_commands_velocities_[i] / 2 / M_PI;
+        input_vel = (i == 0? -1.0 : 1.0) * (hw_commands_velocities_[i] / 2 / M_PI);
         CHECK_RW(odrive->write(
           serial_numbers_[1][i], AXIS__CONTROLLER__INPUT_VEL + per_axis_offset * axes_[i],
           input_vel));

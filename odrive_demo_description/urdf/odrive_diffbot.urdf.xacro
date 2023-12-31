@@ -3,9 +3,9 @@
 
   <xacro:arg name="prefix" default="" />
 
-  <xacro:include filename="$(find diffbot_description)/urdf/diffbot_description.urdf.xacro" />
+  <xacro:include filename="$(find ros2_control_demo_description)/diffbot/urdf/diffbot_description.urdf.xacro" />
 
-  <xacro:include filename="$(find diffbot_description)/gazebo/diffbot.materials.xacro" />
+  <xacro:include filename="$(find ros2_control_demo_description)/diffbot/urdf/diffbot.materials.xacro" />
 
   <xacro:include filename="$(find odrive_demo_description)/urdf/odrive.ros2_control.xacro" />
 
